@@ -1,0 +1,20 @@
+This is a simple cat-and-mouse type game, written in Java.
+
+GAMEPLAY
+---------------------
+-The game is comparable to a board game. IT takes place on a 9x9 grid, on which a spy moves from tile to tile until he finds the tile with a briefcase.
+-There are a minimum of 3 ninjas on the board (depending on the set difficulty) that also move from tile to tile, looking for the spy.
+-If a ninja comes within one tile of the spy, the ninja kills the spy, and the player loses one of his 3 (at the minimum) lives.
+-At any time, the spy can see 1 tile ahead in each direction.
+-The spy has a gun with a single bullet with which to defend himself.
+-If a player shoots his gun, the bullet travels across the entire board, taking out any ninjas in its path.
+-If the player is killed, he respawns back at his original spawn point.
+-The levels may increase or decrease in size depending on the difficulty and level.
+-Various powerups are scattered throughout the maps that grant the spy an advantage:
+	-Invincibility: Grants the player invincibility for 5 turns.
+	-Extra Bullet: Grants the player an extra bullet.
+	-Flashlight: Grants the player the ability to see an extra number of squares ahead.
+	-Radar: Shows the player the position of the briefcase on the map.
+
+
+
