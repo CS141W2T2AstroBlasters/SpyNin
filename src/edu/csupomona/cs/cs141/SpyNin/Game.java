@@ -10,10 +10,11 @@ package edu.csupomona.cs.cs141.SpyNin;
  *
  * Programming Assignment #N
  *
- * Spies vs. Ninjas <need general description here>
+ * Spies vs. Ninjas 
  *
  * Team #2 / AstroBlasters
- *   <team-member-names-if-team-assignment>
+ *   David Khacherian
+ *	 Jacob Longazo
  *   
  * This is the main class in which the game runs.
  */
@@ -26,12 +27,10 @@ public class Game {
 	public boolean winGame;
 
 	/**
-	 * The main method body. <Further explanation of implementation>
+	 * The main game loop. <Further explanation of implementation>
 	 * @param args
 	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+	public void Run(){
+	
 	}
-
 }

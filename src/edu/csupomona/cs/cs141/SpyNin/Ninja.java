@@ -10,7 +10,7 @@
  * Team #2
  * 	<David Khacherian, Cody Sheppard, Jacob Longazo, Harrison Nguyen, Jonny Lam>
  */   
-package edu.csupomona.cs.cs141.prog_assgmnt_4;
+package edu.csupomona.cs.cs141.SpyNin;
 
 /**
  * The Ninja object determines the attributes and behavior of a ninja. A ninja has lives, which are 

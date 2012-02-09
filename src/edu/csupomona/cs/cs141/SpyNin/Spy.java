@@ -2,6 +2,8 @@
  * 
  */
 
+package edu.csupomona.cs.cs141.SpyNin;
+
 /**
  * This is the class for the player, the Spy that has to find the briefcase. The
  * player can move, shoot, and look on any given turn, and has a few powerups
