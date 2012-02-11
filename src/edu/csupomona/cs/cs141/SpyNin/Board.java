@@ -33,6 +33,35 @@ public class Board {
 	 * determines how many ninjas spawn and/or initial player's life count.
 	 */
 	private int difficulty;
+	
+	public Board(){
+		grid=new int[11][11];
+		for (int[] pj : grid){
+			for (int p : pj){
+				p=0;
+			}
+		}
+		for (int i = 0;i<11;i++){
+			grid[0][i]=10;
+			grid[i][0]=10;
+			grid[10][i]=10;
+			grid[i][10]=10;			
+		}
+		
+		for (int i=2;i<9;i+=3){
+			for (int j=2;j<9;j+=3){
+				grid[i][j]=8;
+			}
+		}
+		
+		grid[9][1]=1;
+		
+		
+	}
+	
+	public Board(int x, int y){
+		
+	}
 
 	/**
 	 * @return the grid
@@ -41,12 +70,6 @@ public class Board {
 		return grid;
 	}
 
-	/**
-	 * @param grid the grid to set
-	 */
-	public void setGrid(int[][] grid) {
-		this.grid = grid;
-	}
 
 	/**
 	 * @return the difficulty
