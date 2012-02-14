@@ -18,45 +18,15 @@ package edu.csupomona.cs.cs141.SpyNin;
  * 
  * @author Harrison Nguyen
  */
-public class Ninja {
+public class Ninja extends Character{
 	
-	/**
-	 * The field {@link life} determine the life count of a ninja. Initially, life start at 1. 
-	 * The method {@link #die(int)} would reduce life by one. A ninja with life at zero will not 
-	 * respawn.
-	 */
-	private int life;
 
-	/**
-	 * @return the life
+	/* (non-Javadoc)
+	 * @see edu.csupomona.cs.cs141.SpyNin.Character#Move()
 	 */
-	public int getLife() {
-		return life;
-	}
-
-	/**
-	 * @param life the life to set
-	 */
-	public void setLife(int life) {
-		this.life = life;
-	}
-	
-	/**
-	 * This method {@link moveNinja} determines which direction the ninja will or will not move. This 
-	 * ninjas will always move one space, in any direction. The direction of movement is random, 
-	 * determined by a psudo-random number generator from 0-4. Number {@code 0} means the ninja will not move.
-	 * Number {@code 1}, {@code 2}, {@code 3}, {@code 4} means that the ninja will move.
-	 */
-	public void moveNinja(Ninja[][] grid) {
+	@Override
+	public void Move() {
+		// TODO Auto-generated method stub
 		
-	}
-	
-	/**
-	 * This method {@link die} subtracts a ninja's life by one. The @return lives is the original life 
-	 * minus {@code 1}.
-	 * @param life
-	 */
-	public int die(int life) {
-		return life;
 	}
 }
