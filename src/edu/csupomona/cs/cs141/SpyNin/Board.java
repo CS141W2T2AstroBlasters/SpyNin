@@ -5,8 +5,6 @@
  *
  * Programming Assignment #4
  *
- * <description-of-assignment>
- *
  * Team #2
  * 	<David Khacherian, Cody Sheppard, Jacob Longazo, Harrison Nguyen, Jonny Lam>
  */
@@ -105,8 +103,9 @@ public class Board {
 	}
 
 	/**
-	 * @return the grid
-	 */
+	* @param type The object id of the object to search for.
+	* @return Returns the X coordinate of a given object on the board.
+	*/
 	public int getX(int type) {
 		for (int x = 0; x < grid.length; x++) {
 			for (int y = 0; y < grid[x].length; y++)
@@ -116,7 +115,11 @@ public class Board {
 		}
 		return (-1);
 	}
-
+	
+	/**
+	* @param type The object id of the object to search for.
+	* @return Returns the Y coordinate of a given object on the board.
+	*/
 	public int getY(int type) {
 		for (int x = 0; x < grid.length; x++) {
 			for (int y = 0; y < grid[x].length; y++)
@@ -127,31 +130,43 @@ public class Board {
 		return (-1);
 	}
 
+	/**
+	* @param x The X coordinate of the tile to search.
+	* @param y The Y coordinate of the tile to search.
+	* @return Returns the object id of the given tile..
+	*/
 	public int getObj(int x, int y) {
 
 		int type = grid[x][y];
 		return type;
 	}
 
+	/**
+	* @param x The X coordinate of the tile to modify.
+	* @param y The Y coordinate of the tile to modify.
+	* @param type The object id of the object to place on the given tile.
+	*/
 	public void setObj(int x, int y, int type) {
 		grid[x][y] = type;
 	}
 
 	/**
-	 * @return the difficulty
+	 * @return Returns the game difficulty. 1: Easy, 2: Medium, 3: Hard, 4: GTFO NOOB
 	 */
 	public int getDifficulty() {
 		return difficulty;
 	}
 
 	/**
-	 * @param difficulty
-	 *            the difficulty to set
+	 * @param difficulty The difficulty at which to set the game.
 	 */
 	public void setDifficulty(int difficulty) {
 		this.difficulty = difficulty;
 	}
 
+	/**
+	* 
+	*/
 	public void testBoard() {
 		for (int i = 0; i < grid.length; i++) {
 			for (int j = 0; j < grid[i].length; j++) {
@@ -160,7 +175,10 @@ public class Board {
 			System.out.println();
 		}
 	}
-
+	
+	/**
+	* Prints the game board to standard out, replacing object id's with more friendly characters.
+	*/
 	public void displayBoard() {
 		int positionY = 0;
 		int positionX = 0;
