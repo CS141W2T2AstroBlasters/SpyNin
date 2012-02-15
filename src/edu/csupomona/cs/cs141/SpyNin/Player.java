@@ -1,30 +1,38 @@
 package edu.csupomona.cs.cs141.SpyNin;
-
 import java.util.Scanner;
 
 /**
- * A class representing a player on the game board.
+ * A class representing a player character on the game board.
  */
 public class Player extends Character {
-	/*
-	 * Initializes the player object with a number of lives.
-	 */
+	/**
+	* @param lives The number of lives with which to initialize the player. 
+	*/
 	public Player(int lives) {
 
 	}
-
+	
+	/**
+	* The number of turns of invincibility that the player has left.
+	*/
 	private int invincibility;
+	/**
+	* The number of turns of flashlight usage that the player has left.
+	*/
 	private int flashlight;
-	private int ammo = 1;
+
+	/**
+	* The number of tiles ahead that the player can see.
+	*/
 	private int range;
+
 	Scanner keyboard = new Scanner(System.in);
 
-	/*
-	 * Shoots a bullet in the given direction.
-	 */
+	/**
+	* Shoots a bullet in the given direction.
+	*/
 	public void Shoot(Board grid) {
 		if (ammo < 0) {
-
 			System.out.println("Which direction would you like to shoot?");
 			System.out.println("1. Up");
 			System.out.println("2. Left");
@@ -93,10 +101,10 @@ public class Player extends Character {
 
 	}
 
-	/*
-	 * Allows the player to see range number of squares ahead in the given
-	 * direction.
-	 */
+	/**
+	* Allows the player to see range number of squares ahead in the given
+	* direction.
+	*/
 	public void Look(Board grid) {
 		System.out.println("Which direction would you like to Look?");
 		System.out.println("1. Up");
@@ -108,11 +116,9 @@ public class Player extends Character {
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see edu.csupomona.cs.cs141.SpyNin.Character#Move()
-	 */
+	/**
+	* @see edu.csupomona.cs.cs141.SpyNin.Character#Move()
+	*/
 	@Override
 	public void Move(Board grid) {
 		int move=1;
