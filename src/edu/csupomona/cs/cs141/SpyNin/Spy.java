@@ -1,17 +1,13 @@
 /**
- * 
- */
-
-package edu.csupomona.cs.cs141.SpyNin;
-
-/**
  * This is the class for the player, the Spy that has to find the briefcase. The
  * player can move, shoot, and look on any given turn, and has a few powerups
  * that can be found on the board as well.
  * 
  * @author Cody Sheppard
- * 
  */
+
+package edu.csupomona.cs.cs141.SpyNin;
+
 public class Spy {
 	/**
 	 * This value stores the amount of lives the player has. When it reaches 0,
