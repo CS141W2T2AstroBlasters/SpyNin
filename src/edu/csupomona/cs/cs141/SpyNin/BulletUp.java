@@ -1,3 +1,16 @@
+/**
+ * CS 141: Introduction to Programming and Problem Solving
+ *
+ * Professor: Edwin Rodr&iacute;guez
+ *
+ * Programming Assignment #4 -- Final Project Milestone 3
+ *
+ * <The purpose of this assignment is to create executable 
+ * code for the core of our final project. >
+ *
+ * Team #2: AstroBlasters
+ * 		<Members: Johnny L., David K., Harrison N., Cody S., Jacob L.>
+ */
 package edu.csupomona.cs.cs141.SpyNin;
 
 /**
@@ -8,9 +21,9 @@ public class BulletUp
 	/*
 	* Initializes the powerup with the number of extra bullets to be awarded to the player.
 	*/
-	public BulletUp(int bullets)
+	public BulletUp()
 	{
-		num_bullets = bullets;
+		num_bullets = 1;
 	}
 	
 	/**

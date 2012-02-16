@@ -1,16 +1,17 @@
 /**
  * CS 141: Introduction to Programming and Problem Solving
- * Professor: Edwin Rodriguez
- * 
- * Programming Assignment #1 -- Final Project Phase 2
- * 
- * The purpose of this assignment is to create the skeleton code
- * for our final project.  The skeleton code will facilitate the
- * process of creating the final product for our final project.
- * 
+ *
+ * Professor: Edwin Rodr&iacute;guez
+ *
+ * Programming Assignment #4 -- Final Project Milestone 3
+ *
+ * <The purpose of this assignment is to create executable 
+ * code for the core of our final project. >
+ *
  * Team #2: AstroBlasters
  * 		<Members: Johnny L., David K., Harrison N., Cody S., Jacob L.>
  */
+
 package edu.csupomona.cs.cs141.SpyNin;
 import java.util.Scanner;
 
