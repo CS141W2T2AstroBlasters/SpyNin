@@ -18,17 +18,10 @@ import java.io.IOException;
 import java.util.Scanner;
 
 /**
- * * CS 141: Introduction to Programming and Problem Solving Professor: Edwin
- * Rodr&iacute;guez
- * 
- * Programming Assignment #N
- * 
- * Spies vs. Ninjas
- * 
- * Team #2 / AstroBlasters David Khacherian Jacob Longazo
- * 
- * This is the main class in which the game runs.
+ * This is the main class through which the game runs. 
+ * ...
  */
+
 public class Game {
 
 	private static Scanner keyboard = new Scanner(System.in);
@@ -77,6 +70,7 @@ public class Game {
 	}
 
 	/**
+	 * ...
 	 * @return
 	 * @throws ClassNotFoundException
 	 * @throws IOException
@@ -142,7 +136,7 @@ public class Game {
 				play = false;
 				break;
 			}
-			default: {
+			default {
 				System.out.println("That is not a valid option.");
 				break;
 			}
@@ -162,6 +156,10 @@ public class Game {
 		return play;
 	}*/
 
+	/**
+	 * This method will display the menu to the player at the beginning of the
+	 * game.
+	 */
 	public static int startMenu() {
 		System.out.println("Welcome to Spy vs Ninjas!");
 		System.out.println();
@@ -175,6 +173,9 @@ public class Game {
 		return choice;
 	}
 
+	/**
+	 * This method will start the game ...
+	 */
 	public static boolean startGame() throws FileNotFoundException {
 		boolean play = true;
 		Board board = new Board();
@@ -259,6 +260,9 @@ public class Game {
 
 	}
 
+	/**
+	 * This method will diplay the player's menu during the course of the game.
+	 */
 	public static int playerMenu(Board b) {
 		b.displayBoard();
 		System.out.println("1. Move");
@@ -271,16 +275,25 @@ public class Game {
 		return choice;
 	}
 
+	/**
+	 * This method displays a message indicating the player has won.
+	 */
 	public static void Win() {
 		System.out.println("You Win!");
 
 	}
 
+	/**
+	 * This method displays a message indicating the player has lost.
+	 */
 	public static void Lose() {
 		System.out.println("You Lose!");
 
 	}
 
+	/**
+	 * This ...
+	 */
 	public static Board ninjaTurn(Board board, Ninja[] nins) {
 		for (int i = 0; i < nins.length; i++) {
 			board = nins[i].Move(board);

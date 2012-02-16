@@ -20,17 +20,25 @@ import java.util.Random;
  * @author Harrison Nguyen
  */
 public class Ninja extends Character{
+	
+	/**
+	 * ...
+	 */
 	private Random r = new Random();
 	
-
+	/**
+	 * This constructor ...
+	 */
 	public Ninja(int num){
 		this.id=num;
 		this.lives=1;
 	}
-	/*
+	/**
+	 * ...
 	 * (non-Javadoc)
 	 * 
 	 * @see edu.csupomona.cs.cs141.SpyNin.Character#Move()
+	 * @return grid
 	 */
 	public Board Move(Board grid) {
 		int direction;

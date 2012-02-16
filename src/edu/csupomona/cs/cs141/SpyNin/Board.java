@@ -123,7 +123,7 @@ public class Board implements Serializable {
 	}
 
 	/**
-	 * This method 
+	 * This method ...
 	 * @return 
 	 */
 	public int getX(int type) {
@@ -138,7 +138,7 @@ public class Board implements Serializable {
 	}
 
 	/**
-	 * This method
+	 * This method ... 
 	 * @return 
 	 */
 	public int getY(int type) {
@@ -153,7 +153,7 @@ public class Board implements Serializable {
 	}
 
 	/**
-	 * This method
+	 * This method ...
 	 * @return type
 	 */
 	public int getObj(int x, int y) {
@@ -163,7 +163,7 @@ public class Board implements Serializable {
 	}
 
 	/**
-	 * This method
+	 * This method ...
 	 * @return type
 	 */
 	public int getStatic(int x, int y) {
@@ -173,14 +173,14 @@ public class Board implements Serializable {
 	}
 
 	/**
-	 * This method
+	 * This method ...
 	 */
 	public void setObj(int x, int y, int type) {
 		grid[x][y] = type;
 	}
 
 	/**
-	 * This method .
+	 * This method ...
 	 * @return the difficulty
 	 */
 	public int getDifficulty() {
@@ -188,16 +188,15 @@ public class Board implements Serializable {
 	}
 
 	/**
-	 * This method
-	 * @param difficulty
-	 *            the difficulty to set
+	 * This method...
+	 * @param difficulty The difficulty to set.
 	 */
 	public void setDifficulty(int difficulty) {
 		this.difficulty = difficulty;
 	}
 
 	/**
-	 * This method
+	 * This method ...
 	 */
 	public void testBoard() {
 		for (int i = 0; i < grid.length; i++) {
@@ -209,7 +208,7 @@ public class Board implements Serializable {
 	}
 
 	/**
-	 * This method
+	 * This method ...
 	 */
 	public void displayBoard() {
 		int positionY = 0;
@@ -305,7 +304,7 @@ public class Board implements Serializable {
 	}
 
 	/**
-	 * This method
+	 * This method ...
 	 * @param direction
 	 */
 	public void LookBoard(int direction) {
@@ -719,8 +718,7 @@ public class Board implements Serializable {
 				System.out.println();
 			}
 		}
-		}
-
+		
 	}
 
 }
