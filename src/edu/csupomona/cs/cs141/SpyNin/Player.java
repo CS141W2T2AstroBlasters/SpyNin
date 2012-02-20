@@ -1,21 +1,7 @@
-/**
- * CS 141: Introduction to Programming and Problem Solving
- *
- * Professor: Edwin Rodr&iacute;guez
- *
- * Programming Assignment #4 -- Final Project Milestone 3
- *
- * <The purpose of this assignment is to create executable 
- * code for the core of our final project. >
- *
- * Team #2: AstroBlasters
- * 		<Members: Johnny L., David K., Harrison N., Cody S., Jacob L.>
- */
 package edu.csupomona.cs.cs141.SpyNin;
 
 import java.util.Random;
 import java.util.Scanner;
-
 /**
  * A class representing a player on the game board.
  */
@@ -39,23 +25,24 @@ public class Player extends Character{
 	private int invincibility;
 	private int flashlight;
 	private int ammo = 1;
-	private int range;
-	Scanner keyboard = new Scanner(System.in);
+	/**
+	 * @return the ammo
+	 */
+	public int getAmmo() {
+		return ammo;
+	}
+	
+	public void ammoUp(boolean addAmmo) {
+		if (addAmmo) {
+			ammo++;
+		}
+	}
 
 	/*
 	 * Shoots a bullet in the given direction.
 	 */
-	public void Shoot(Board grid, Ninja[] nins) {
-		if (ammo < 0) {
-
-			System.out.println("Which direction would you like to shoot?");
-			System.out.println("1. Up");
-			System.out.println("2. Left");
-			System.out.println("3. Right");
-			System.out.println("4. Down");
-			System.out.print("Choice: ");
-			int direction = keyboard.nextInt();
-
+	public void Shoot(Board grid, Ninja[] nins, int direction) {
+		if (ammo > 0) {
 			switch (direction) {
 			case 1: {
 				int y = grid.getY(1);
@@ -74,7 +61,7 @@ public class Player extends Character{
 				int y = grid.getY(1);
 				int x = grid.getX(1);
 
-				for (x = grid.getY(1); x > 0; x--) {
+				for (x = grid.getX(1); x > 0; x--) {
 					if (grid.getObj(x, y) > 19) {
 						nins[grid.getObj(x, y)].Die();
 						grid.setObj(x, y, 0);
@@ -87,7 +74,7 @@ public class Player extends Character{
 				int y = grid.getY(1);
 				int x = grid.getX(1);
 
-				for (x = grid.getY(1); x < 11; x++) {
+				for (x = grid.getX(1); x < 11; x++) {
 					if (grid.getObj(x, y) > 19) {
 						nins[grid.getObj(x, y)].Die();
 						grid.setObj(x, y, 0);
@@ -125,16 +112,10 @@ public class Player extends Character{
 	 * Allows the player to see range number of squares ahead in the given
 	 * direction.
 	 */
-	public void Look(Board grid) {
-		System.out.println("Which direction would you like to Look?");
-		System.out.println("1. Up");
-		System.out.println("2. Left");
-		System.out.println("3. Right");
-		System.out.println("4. Down");
-		System.out.print("Choice: ");
-		int direction = keyboard.nextInt();
+	public void Look(Board grid, int direction) {
 		if (direction>0&&direction<5){
-		grid.LookBoard(direction);}
+			grid.LookBoard(direction);
+		}
 		else{
 			System.out.println("That is not a valid option");
 		}
@@ -147,17 +128,7 @@ public class Player extends Character{
 	 * 
 	 * @see edu.csupomona.cs.cs141.SpyNin.Character#Move()
 	 */
-	public Board Move(Board grid) {
-		int move = 1;
-		while (move == 1) {
-			System.out.println("Which direction would you like to move?");
-			System.out.println("1. Up");
-			System.out.println("2. Left");
-			System.out.println("3. Right");
-			System.out.println("4. Down");
-			System.out.print("Choice: ");
-			int direction = keyboard.nextInt();
-
+	public Board Move(Board grid, int direction) {
 			switch (direction) {
 			case 1: {
 				int y = grid.getY(1);
@@ -165,9 +136,10 @@ public class Player extends Character{
 				if (grid.getObj(x - 1, y) != 10) {
 					grid.setObj(x - 1, y, 1);
 					grid.setObj(x, y, 0);
-					move = 0;
+					
 				} else {
 					System.out.println("There is a wall there.");
+					
 				}
 				break;
 				
@@ -178,7 +150,7 @@ public class Player extends Character{
 				if (grid.getObj(x, y - 1) != 10) {
 					grid.setObj(x, y - 1, 1);
 					grid.setObj(x, y, 0);
-					move = 0;
+					
 				} else {
 					System.out.println("There is a wall there.");
 				}
@@ -191,7 +163,7 @@ public class Player extends Character{
 				if (grid.getObj(x, y + 1) != 10) {
 					grid.setObj(x, y + 1, 1);
 					grid.setObj(x, y, 0);
-					move = 0;
+					
 				} else {
 					System.out.println("There is a wall there.");
 				}
@@ -204,7 +176,7 @@ public class Player extends Character{
 				if (grid.getObj(x + 1, y) != 10) {
 					grid.setObj(x + 1, y, 1);
 					grid.setObj(x, y, 0);
-					move = 0;
+					
 				} else {
 					System.out.println("There is a wall there.");
 				}
@@ -217,9 +189,10 @@ public class Player extends Character{
 			}
 
 			}
+			return grid;
 		}
-		return grid;
-	}
+		
+	
 
 	public Board ninjaCheck(Board b) {
 		Random r = new Random();
@@ -247,5 +220,43 @@ public class Player extends Character{
 
 		}
 		return b;
+	}
+
+	/**
+	 * @return the flashlight
+	 */
+	public int getFlashlight() {
+		return flashlight;
+	}
+
+	/**
+	 * @param flashlight the flashlight to set
+	 */
+	public void setFlashlight(int flashlight) {
+		this.flashlight = flashlight;
+	}
+
+	/**
+	 * @return the invincibility
+	 */
+	public int getInvincibility() {
+		return invincibility;
+	}
+
+	/**
+	 * @param invincibility the invincibility to set
+	 */
+	public void setInvincibility(int invincibility) {
+		this.invincibility = invincibility;
+	}
+
+	/* (non-Javadoc)
+	 * @see edu.csupomona.cs.cs141.SpyNin.Character#Die()
+	 */
+	@Override
+	public void Die() {
+		lives--;
+		System.out.println("You have died.");
+		
 	}
 }

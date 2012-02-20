@@ -3,13 +3,12 @@
  *
  * Professor: Edwin Rodr&iacute;guez
  *
- * Programming Assignment #4 -- Final Project Milestone 3
+ * Programming Assignment #4
  *
- * <The purpose of this assignment is to create executable 
- * code for the core of our final project. >
+ * <description-of-assignment>
  *
- * Team #2: AstroBlasters
- * 		<Members: Johnny L., David K., Harrison N., Cody S., Jacob L.>
+ * Team #2
+ * 	<David Khacherian, Cody Sheppard, Jacob Longazo, Harrison Nguyen, Jonny Lam>
  */
 package edu.csupomona.cs.cs141.SpyNin;
 
@@ -28,10 +27,8 @@ import java.util.Random;
 public class Board implements Serializable {
 
 	/**
-	 * The field {@link grid} represents the 9 by 9 grid in which the objects are
-	 * placed. Once set, the {@link Board} should not change. This field is for
-	 * objects that are able to "move" in the game. For example, the player and 
-	 * the ninjas.
+	 * The field {@link grid} represents the 9 by 9 grid on which the object are
+	 * placed. Once set, the board shouldn't change.
 	 */
 	private int[][] grid;
 
@@ -41,21 +38,25 @@ public class Board implements Serializable {
 	 * player's life count.
 	 */
 	private int difficulty;
-	/**
-	 * This field {@link staticGrid} represents the 9 by 9 grid in which the
-	 * objects are place. Once set, the {@link Board} should not change. This
-	 * field is for objects that are unable to "move" in the game. For example, 
-	 * the briefcase, and the powerups.
-	 */
+
 	private int[][] staticGrid;
 
-	/**
-	 * This constructor is for the class {@link Board}. This constructor
-	 * places the walls, rooms, all the powerups, the briefcase, the player
-	 * and the ninjas on the {@link Board}.
-	 */
 	public Board() {
+
+	}
+
+	public Board(int x, int y, int difficulty) {
+
+	}
+
+	public void makeBoard() {
 		grid = new int[11][11];
+		staticGrid = new int[11][11];
+		for (int[] pj : staticGrid) {
+			for (int p : pj) {
+				p = 0;
+			}
+		}
 		for (int[] pj : grid) {
 			for (int p : pj) {
 				p = 0;
@@ -66,22 +67,26 @@ public class Board implements Serializable {
 			grid[i][0] = 10;
 			grid[10][i] = 10;
 			grid[i][10] = 10;
+			staticGrid[0][i] = 10;
+			staticGrid[i][0] = 10;
+			staticGrid[10][i] = 10;
+			staticGrid[i][10] = 10;
 		}
 
 		for (int i = 2; i < 9; i += 3) {// Places rooms
 			for (int j = 2; j < 9; j += 3) {
-				grid[i][j] = 8;
+				staticGrid[i][j] = 8;
 			}
 		}
 		Random rand = new Random();
 		for (int n = 4; n < 8; n++) {// Places powerups, Radar, Flashlight,
-										// Radar, BulletUp
+										// invinc, BulletUp
 			while (true) {
 				int x = rand.nextInt(11);
 				int y = rand.nextInt(11);
-				if ((grid[x][y] == 0) && (x != 8 && y != 1)
+				if ((staticGrid[x][y] == 0) && (x != 8 && y != 1)
 						&& (x != 9 && y != 2)) {
-					grid[x][y] = n;
+					staticGrid[x][y] = n;
 					break;
 				}
 			}
@@ -91,13 +96,13 @@ public class Board implements Serializable {
 			while (true) {
 				int x = rand.nextInt(11);
 				int y = rand.nextInt(11);
-				if (grid[x][y] == 8) {
-					grid[x][y] = 3;
+				if (staticGrid[x][y] == 8) {
+					staticGrid[x][y] = 3;
 					break;
 				}
 			}
 		}
-		staticGrid = grid; // creates a board just full of non-moving objects
+		// creates a board just full of non-moving objects
 
 		grid[9][1] = 1;// Places the player
 
@@ -112,19 +117,10 @@ public class Board implements Serializable {
 				}
 			}
 		}
-
-	}
-	/**
-	 * This constructor for the {@link Board} class with the parameters
-	 * x, y and difficulty. 
-	 */
-	public Board(int x, int y, int difficulty) {
-
 	}
 
 	/**
-	 * This method ...
-	 * @return 
+	 * @return the grid
 	 */
 	public int getX(int type) {
 		int pos = 0;
@@ -137,10 +133,6 @@ public class Board implements Serializable {
 		return pos;
 	}
 
-	/**
-	 * This method ... 
-	 * @return 
-	 */
 	public int getY(int type) {
 		int pos = 0;
 		for (int x = 0; x < grid.length; x++) {
@@ -152,35 +144,27 @@ public class Board implements Serializable {
 		return pos;
 	}
 
-	/**
-	 * This method ...
-	 * @return type
-	 */
 	public int getObj(int x, int y) {
 
 		int type = grid[x][y];
 		return type;
 	}
 
-	/**
-	 * This method ...
-	 * @return type
-	 */
 	public int getStatic(int x, int y) {
 
 		int type = staticGrid[x][y];
 		return type;
 	}
 
-	/**
-	 * This method ...
-	 */
 	public void setObj(int x, int y, int type) {
 		grid[x][y] = type;
 	}
+	
+	public void setStatic(int x, int y, int type) {
+		staticGrid[x][y] = type;
+	}
 
 	/**
-	 * This method ...
 	 * @return the difficulty
 	 */
 	public int getDifficulty() {
@@ -188,29 +172,23 @@ public class Board implements Serializable {
 	}
 
 	/**
-	 * This method...
-	 * @param difficulty The difficulty to set.
+	 * @param difficulty
+	 *            the difficulty to set
 	 */
 	public void setDifficulty(int difficulty) {
 		this.difficulty = difficulty;
 	}
 
-	/**
-	 * This method ...
-	 */
 	public void testBoard() {
 		for (int i = 0; i < grid.length; i++) {
 			for (int j = 0; j < grid[i].length; j++) {
-				System.out.print(grid[i][j] + "\t");
+				System.out.print(grid[i][j] +" "+ staticGrid[i][j]+ "\t");
 			}
 			System.out.println();
 		}
 	}
 
-	/**
-	 * This method ...
-	 */
-	public void displayBoard() {
+	public void displayBoard(int sight) {
 		int positionY = 0;
 		int positionX = 0;
 		for (int x = 0; x < grid.length; x++) {
@@ -233,10 +211,15 @@ public class Board implements Serializable {
 
 				}
 
-				else if ((i == positionX && j == (positionY - 1))
-						|| (i == positionX && j == (positionY + 1))
-						|| (i == (positionX - 1) && j == positionY)
-						|| (i == (positionX + 1) && j == positionY)) {
+				else if (((i == positionX && j == (positionY - (1)))
+						|| (i == positionX && j == (positionY + (1)))
+						|| (i == (positionX - (1)) && j == positionY)
+						|| (i == (positionX + (1)) && j == positionY))
+						// for flashlight powerup.
+						|| ((i == positionX && j == (positionY - (1+sight)))
+							|| (i == positionX && j == (positionY + (1+sight)))
+							|| (i == (positionX - (1+sight)) && j == positionY)
+							|| (i == (positionX + (1+sight)) && j == positionY)) ) {
 					if (staticGrid[i][j] == 4) {
 						System.out.print("#" + "\t");
 					}
@@ -265,11 +248,11 @@ public class Board implements Serializable {
 						System.out.print("~~~");
 					}
 
-					else if (staticGrid[i][j] == 8 || grid[i][j] == 3) {
+					else if (staticGrid[i][j] == 8) {
 						System.out.print("[R]" + "\t");
 					}
 
-					else if (staticGrid[i][j] == 9) {
+					else if (staticGrid[i][j] == 9 || staticGrid[i][j] == 3) {
 						System.out.print("[B]" + "\t");
 					}
 
@@ -286,16 +269,16 @@ public class Board implements Serializable {
 						System.out.print("~~~");
 					}
 
-					else if (grid[i][j] == 8 || grid[i][j] == 3) {
+					else if (staticGrid[i][j] == 8 || staticGrid[i][j] == 3) {
 						System.out.print("[R]" + "\t");
 					}
-
+					
 					else if (grid[i][j] == 9) {
-						System.out.print("[B]" + "\t");
+						System.out.println("[B]"+"\t");
 					}
 
 					else {
-						System.out.print("-" + "\t");
+						System.out.print("{}" + "\t");
 					}
 				}
 			}
@@ -304,7 +287,6 @@ public class Board implements Serializable {
 	}
 
 	/**
-	 * This method ...
 	 * @param direction
 	 */
 	public void LookBoard(int direction) {
@@ -332,21 +314,19 @@ public class Board implements Serializable {
 
 					}
 
-					else if ((positionX >= 3
-							&& (i == positionX && j == (positionY - 1))
-							|| (i == positionX && j == (positionY + 1))
-							|| (i == (positionX - 1) && j == positionY)
-							|| (i == (positionX + 1) && j == positionY)
-							|| (i == (positionX - 2) && j == positionY) || (i == (positionX - 3) && j == positionY))
-							|| (positionX == 2
-									&& (i == positionX && j == (positionY - 1))
+					else if (positionX >= 3
+							&& ((i == positionX && j == (positionY - 1))
 									|| (i == positionX && j == (positionY + 1))
 									|| (i == (positionX - 1) && j == positionY)
-									|| (i == (positionX + 1) && j == positionY) || (i == (positionX - 2) && j == positionY))
-							|| (positionX == 1
-									&& (i == positionX && j == (positionY - 1))
+									|| (i == (positionX + 1) && j == positionY)
+									|| (i == (positionX - 2) && j == positionY) || (i == (positionX - 3) && j == positionY))
+							|| (positionX == 2 && ((i == positionX && j == (positionY - 1))
 									|| (i == positionX && j == (positionY + 1))
-									|| (i == (positionX - 1) && j == positionY) || (i == (positionX + 1) && j == positionY))) {
+									|| (i == (positionX - 1) && j == positionY)
+									|| (i == (positionX + 1) && j == positionY) || (i == (positionX - 2) && j == positionY)))
+							|| (positionX == 1 && ((i == positionX && j == (positionY - 1))
+									|| (i == positionX && j == (positionY + 1))
+									|| (i == (positionX - 1) && j == positionY) || (i == (positionX + 1) && j == positionY)))) {
 						if (staticGrid[i][j] == 4) {
 							System.out.print("#" + "\t");
 						}
@@ -375,7 +355,7 @@ public class Board implements Serializable {
 							System.out.print("~~~");
 						}
 
-						else if (staticGrid[i][j] == 8 || grid[i][j] == 3) {
+						else if (staticGrid[i][j] == 8 || staticGrid[i][j] == 3) {
 							System.out.print("[R]" + "\t");
 						}
 
@@ -388,29 +368,30 @@ public class Board implements Serializable {
 						}
 
 					} else {
-						if (grid[i][j] == 10 && i != 11) {
+						if (staticGrid[i][j] == 10 && i != 11) {
 							System.out.print("~~~" + "\t");
 						}
 
-						else if (grid[i][j] == 10 || i == 11) {
+						else if (staticGrid[i][j] == 10 || i == 11) {
 							System.out.print("~~~");
 						}
 
-						else if (grid[i][j] == 8 || grid[i][j] == 3) {
+						else if (staticGrid[i][j] == 8 || staticGrid[i][j] == 3) {
 							System.out.print("[R]" + "\t");
 						}
 
-						else if (grid[i][j] == 9) {
+						else if (staticGrid[i][j] == 9) {
 							System.out.print("[B]" + "\t");
 						}
 
 						else {
-							System.out.print("-" + "\t");
+							System.out.print("{}" + "\t");
 						}
 					}
 				}
 				System.out.println();
 			}
+			break;
 		}
 		case 2: {
 			int positionY = 0;
@@ -435,20 +416,19 @@ public class Board implements Serializable {
 
 					}
 
-					else if (((positionY >= 3
-							&& (i == positionX && j == (positionY - 1))
-							|| (i == positionX && j == (positionY + 1))
-							|| (i == (positionX - 1) && j == positionY)
-							|| (i == (positionX + 1) && j == positionY)
-							|| (i == (positionX) && j == positionY - 2) || (i == (positionX) && j == positionY - 3))
-							|| (positionY == 2
-									&& (i == positionX && j == (positionY - 1))
+					else if (positionY >= 3
+							&& ((i == positionX && j == (positionY - 1))
 									|| (i == positionX && j == (positionY + 1))
 									|| (i == (positionX - 1) && j == positionY)
-									|| (i == (positionX + 1) && j == positionY) || (i == (positionX) && j == positionY - 2)) || (positionY == 10
-							&& (i == positionX && j == (positionY - 1))
-							|| (i == positionX && j == (positionY + 1))
-							|| (i == (positionX - 1) && j == positionY) || (i == (positionX + 1) && j == positionY)))) {
+									|| (i == (positionX + 1) && j == positionY)
+									|| (i == (positionX) && j == positionY - 2) || (i == (positionX) && j == positionY - 3))
+							|| (positionY == 2 && ((i == positionX && j == (positionY - 1))
+									|| (i == positionX && j == (positionY + 1))
+									|| (i == (positionX - 1) && j == positionY)
+									|| (i == (positionX + 1) && j == positionY) || (i == (positionX) && j == positionY - 2)))
+							|| (positionY == 1 && ((i == positionX && j == (positionY - 1))
+									|| (i == positionX && j == (positionY + 1))
+									|| (i == (positionX - 1) && j == positionY) || (i == (positionX + 1) && j == positionY)))) {
 						if (staticGrid[i][j] == 4) {
 							System.out.print("#" + "\t");
 						}
@@ -477,7 +457,7 @@ public class Board implements Serializable {
 							System.out.print("~~~");
 						}
 
-						else if (staticGrid[i][j] == 8 || grid[i][j] == 3) {
+						else if (staticGrid[i][j] == 8 || staticGrid[i][j] == 3) {
 							System.out.print("[R]" + "\t");
 						}
 
@@ -498,21 +478,22 @@ public class Board implements Serializable {
 							System.out.print("~~~");
 						}
 
-						else if (grid[i][j] == 8 || grid[i][j] == 3) {
+						else if (staticGrid[i][j] == 8 || staticGrid[i][j] == 3) {
 							System.out.print("[R]" + "\t");
 						}
 
-						else if (grid[i][j] == 9) {
+						else if (staticGrid[i][j] == 9) {
 							System.out.print("[B]" + "\t");
 						}
 
 						else {
-							System.out.print("-" + "\t");
+							System.out.print("{}" + "\t");
 						}
 					}
 				}
 				System.out.println();
 			}
+			break;
 		}
 		case 3: {
 			int positionY = 0;
@@ -537,20 +518,19 @@ public class Board implements Serializable {
 
 					}
 
-					else if (((positionY <= 8
-							&& (i == positionX && j == (positionY - 1))
-							|| (i == positionX && j == (positionY + 1))
-							|| (i == (positionX - 1) && j == positionY)
-							|| (i == (positionX + 1) && j == positionY)
-							|| (i == (positionX) && j == positionY + 2) || (i == (positionX) && j == positionY + 3))
-							|| (positionY == 9
-									&& (i == positionX && j == (positionY - 1))
+					else if (positionY <= 8
+							&& ((i == positionX && j == (positionY - 1))
 									|| (i == positionX && j == (positionY + 1))
 									|| (i == (positionX - 1) && j == positionY)
-									|| (i == (positionX + 1) && j == positionY) || (i == (positionX) && j == positionY + 2)) || (positionY == 10
-							&& (i == positionX && j == (positionY - 1))
-							|| (i == positionX && j == (positionY + 1))
-							|| (i == (positionX - 1) && j == positionY) || (i == (positionX + 1) && j == positionY)))) {
+									|| (i == (positionX + 1) && j == positionY)
+									|| (i == (positionX) && j == positionY + 2) || (i == (positionX) && j == positionY + 3))
+							|| (positionY == 9 && ((i == positionX && j == (positionY - 1))
+									|| (i == positionX && j == (positionY + 1))
+									|| (i == (positionX - 1) && j == positionY)
+									|| (i == (positionX + 1) && j == positionY) || (i == (positionX) && j == positionY + 2)))
+							|| (positionY == 10 && ((i == positionX && j == (positionY - 1))
+									|| (i == positionX && j == (positionY + 1))
+									|| (i == (positionX - 1) && j == positionY) || (i == (positionX + 1) && j == positionY)))) {
 						if (staticGrid[i][j] == 4) {
 							System.out.print("#" + "\t");
 						}
@@ -579,7 +559,7 @@ public class Board implements Serializable {
 							System.out.print("~~~");
 						}
 
-						else if (staticGrid[i][j] == 8 || grid[i][j] == 3) {
+						else if (staticGrid[i][j] == 8 || staticGrid[i][j] == 3) {
 							System.out.print("[R]" + "\t");
 						}
 
@@ -592,29 +572,31 @@ public class Board implements Serializable {
 						}
 
 					} else {
-						if (grid[i][j] == 10 && i != 11) {
+						if (staticGrid[i][j] == 10 && i != 11) {
 							System.out.print("~~~" + "\t");
 						}
 
-						else if (grid[i][j] == 10 || i == 11) {
+						else if (staticGrid[i][j] == 10 || i == 11) {
 							System.out.print("~~~");
 						}
 
-						else if (grid[i][j] == 8 || grid[i][j] == 3) {
+						else if (staticGrid[i][j] == 8 || staticGrid[i][j] == 3) {
 							System.out.print("[R]" + "\t");
 						}
 
-						else if (grid[i][j] == 9) {
+						else if (staticGrid[i][j] == 9) {
 							System.out.print("[B]" + "\t");
 						}
 
 						else {
-							System.out.print("-" + "\t");
+							System.out.print("{}" + "\t");
 						}
 					}
 				}
 				System.out.println();
+
 			}
+			break;
 		}
 		case 4: {
 			int positionY = 0;
@@ -623,11 +605,6 @@ public class Board implements Serializable {
 				for (int y = 0; y < grid[x].length; y++)
 					if (grid[x][y] == 1) {
 						positionY = y;
-					}
-			}
-			for (int x = 0; x < grid.length; x++) {
-				for (int y = 0; y < grid[x].length; y++)
-					if (grid[x][y] == 1) {
 						positionX = x;
 					}
 			}
@@ -639,20 +616,19 @@ public class Board implements Serializable {
 
 					}
 
-					else if (((positionX <= 8
-							&& (i == positionX && j == (positionY - 1))
-							|| (i == positionX && j == (positionY + 1))
-							|| (i == (positionX - 1) && j == positionY)
-							|| (i == (positionX + 1) && j == positionY)
-							|| (i == (positionX + 2) && j == positionY) || (i == (positionX + 3) && j == positionY))
-							|| (positionX == 9
-									&& (i == positionX && j == (positionY - 1))
+					else if (positionX <= 8
+							&& ((i == positionX && j == (positionY - 1))
 									|| (i == positionX && j == (positionY + 1))
 									|| (i == (positionX - 1) && j == positionY)
-									|| (i == (positionX + 1) && j == positionY) || (i == (positionX + 2) && j == positionY)) || (positionX == 10
-							&& (i == positionX && j == (positionY - 1))
-							|| (i == positionX && j == (positionY + 1))
-							|| (i == (positionX - 1) && j == positionY) || (i == (positionX + 1) && j == positionY)))) {
+									|| (i == (positionX + 1) && j == positionY)
+									|| (i == (positionX + 2) && j == positionY) || (i == (positionX + 3) && j == positionY))
+							|| (positionX == 9 && ((i == positionX && j == (positionY - 1))
+									|| (i == positionX && j == (positionY + 1))
+									|| (i == (positionX - 1) && j == positionY)
+									|| (i == (positionX + 1) && j == positionY) || (i == (positionX + 2) && j == positionY)))
+							|| (positionX == 10 && ((i == positionX && j == (positionY - 1))
+									|| (i == positionX && j == (positionY + 1))
+									|| (i == (positionX - 1) && j == positionY) || (i == (positionX + 1) && j == positionY)))) {
 						if (staticGrid[i][j] == 4) {
 							System.out.print("#" + "\t");
 						}
@@ -702,23 +678,25 @@ public class Board implements Serializable {
 							System.out.print("~~~");
 						}
 
-						else if (grid[i][j] == 8 || grid[i][j] == 3) {
+						else if (staticGrid[i][j] == 8 || staticGrid[i][j] == 3) {
 							System.out.print("[R]" + "\t");
 						}
 
-						else if (grid[i][j] == 9) {
+						else if (staticGrid[i][j] == 9) {
 							System.out.print("[B]" + "\t");
 						}
 
 						else {
-							System.out.print("-" + "\t");
+							System.out.print("{}" + "\t");
 						}
 					}
 				}
 				System.out.println();
-			}
-		}
-		
-	}
 
+			}
+			break;
+		}
+		}
+
+	}
 }
