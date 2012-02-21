@@ -5,7 +5,7 @@ import java.util.Scanner;
 /**
  * A class representing a player on the game board.
  */
-public class Player extends Character{
+public class Player extends Character implements Serializable{
 	/*
 	 * Initializes the player object with a number of lives.
 	 */

@@ -12,9 +12,8 @@
  */
 package edu.csupomona.cs.cs141.SpyNin;
 
-import java.io.Serializable;
+import java.io.*;
 import java.util.Random;
-
 /**
  * The object Board represents the grid, represented by an integer array by an
  * array, on which the game takes place. The difficulty will determine the
@@ -45,10 +44,22 @@ public class Board implements Serializable {
 
 	}
 
-	public Board(int x, int y, int difficulty) {
+	public Board(int[][] grid, int[][] staticGrid) {
 
 	}
-
+	
+	public void Serialize()
+	{
+		try{
+			ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream("board.obj"));
+			os.writeObject(this);
+			os.close();
+		}
+		catch(IOException e){
+			e.printStackTrace();
+		}
+	}
+	
 	public void makeBoard() {
 		grid = new int[11][11];
 		staticGrid = new int[11][11];
